@@ -1,0 +1,35 @@
+js高阶函数sort
+
+sort:(排序函数)JavaScript的Array的sort()方法就是用于排序的，但其默认的排序方式确实按ASCII码进行排序，可以接受一个自定义的比较函数来实现自定义的排序。
+'use strict';
+
+var arr = [10, 20, 1, 2];
+arr.sort(function (x, y) {
+    if (x < y) {
+        return -1;
+    }
+    if (x > y) {
+        return 1;
+    }
+    return 0;
+});
+console.log(arr); // [1, 2, 10, 20]
+ 
+定义出忽略大小写的比较算法：
+
+var arr = ['Google', 'apple', 'Microsoft'];
+arr.sort(function (s1, s2) {
+    x1 = s1.toUpperCase();
+    x2 = s2.toUpperCase();
+    if (x1 < x2) {
+        return -1;
+    }
+    if (x1 > x2) {
+        return 1;
+    }
+    return 0;
+}); // ['apple', 'Google', 'Microsoft']
+忽略大小写来比较两个字符串，实际上就是先把字符串都变成大写（或者都变成小写），再比较。
+
+注意：sort()方法会直接对Array进行修改，它返回的结果仍是当前Array
+

@@ -1,0 +1,44 @@
+js高阶函数filter
+
+filter：filter也是一个常用的操作，它用于把Array的某些元素过滤掉，然后返回剩下的元素。（筛选函数）
+也可以作为一种回调函数：filter()接收的回调函数，其实可以有多个参数。通常我们仅使用第一个参数，表示Array的某个元素(element)。回调函数还可以接收另外两个参数，表示元素的位置(index)和数组本身(self)：
+var arr = ['A', 'B', 'C'];
+var r = arr.filter(function (element, index, self) {
+    console.log(element); // 依次打印'A', 'B', 'C'
+    console.log(index); // 依次打印0, 1, 2
+    console.log(self); // self就是变量arr
+    return true;
+});
+
+利用filter，可以巧妙地去除Array的重复元素：
+\'use strict';
+
+var
+    r,
+    arr = ['apple', 'strawberry', 'banana', 'pear', 'apple', 'orange', 'orange', 'strawberry'];
+r = arr.filter(function (element, index, self) {
+    return self.indexOf(element) === index;
+});
+console.log(r.toString());
+
+原理：去除重复元素依靠的是indexOf总是返回第一个元素的位置，后续的重复元素位置与indexOf返回的位置不相等，因此被filter滤掉了。
+
+例   用filter()筛选出素数：
+素数：除了一和本身外不被其它数整除的数成为素数。知道了定义下面就看具体代码：
+function get_primes(arr) {
+        return arr.filter(function (element) {
+            var flag=true;
+            if(element<2){
+                flag=false;
+            }
+            else {
+                for(var i=2;i<element;i++){
+                    if (element%i==0){
+                        flag=false;
+                        break;
+                    }
+                }
+            }
+            return flag;
+        })
+    }
