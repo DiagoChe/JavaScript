@@ -1,0 +1,34 @@
+插入DOM：
+1）利用appendChild，把一个子节点添加到父节点的最后一个子节点。
+<!-- HTML结构 -->
+<p id="js">JavaScript</p>
+<div id="list">
+    <p id="java">Java</p>
+    <p id="python">Python</p>
+    <p id="scheme">Scheme</p>
+</div>
+把<p id="js">JavaScript</p>添加到<div id="list">的最后一项：
+
+var
+    js = document.getElementById('js'),
+    list = document.getElementById('list');
+list.appendChild(js);
+从而变成：
+<!-- HTML结构 -->
+<div id="list">
+    <p id="java">Java</p>
+    <p id="python">Python</p>
+    <p id="scheme">Scheme</p>
+    <p id="js">JavaScript</p>
+</div>
+
+从零创建一个新的节点，然后插入到指定位置：
+
+var
+    list = document.getElementById('list'),
+    haskell = document.createElement('p');
+haskell.id = 'haskell';
+haskell.innerText = 'Haskell';
+list.appendChild(haskell);
+
+2）若把子节点插入到指定的位置，parentElement.insertBefore(newElement, referenceElement);，子节点会插入到referenceElement之前。
